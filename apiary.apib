@@ -1,0 +1,51 @@
+FORMAT: 1A
+
+# Attributes API
+Attributes API is an attribute saving service. An attribute maps to a property of a product.
+
+
+## Attributes Collection [/attribute]
+### List all Attributes [GET]
+
+Get a list of all attributes. This call must be paginated.
+
++ Response 200 (application/json)
+
+        [{
+        "name": "operating system", "tags": "cellphone", "type":"dropdown", "description":"software that manages...", "date":"07/10/2015","active":"true"}, 
+        {"name": "price", "tags": "price, pricing, $", "type":"text", "description":"price of the device", "date":"07/10/2015","active":"false"
+        }]
+
+### Create an Attribute [POST]
+
+Creat a single attribute.
+
++ Request (application/json)
+
+        {"name": "price", "tags": "price, pricing, $", "type":"text", "description":"price of the device", "date":"07/10/2015","active":"false"}
+
++ Response 201 (application/json)
+
+        {"name": "price", "tags": "price, pricing, $", "type":"text", "description":"price of the device", "date":"07/10/2015","active":"false"}
+
+## Attribute [/attribute/{id}]
+A single attribute with all its details.
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the attribute to perform action with. 
+
+### Retrieve an attribute [GET]
+Retrieve attribute by Id
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {"name": "operating system", "tags": "cellphone", "type":"dropdown", "description":"software that manages...", "date":"07/10/2015","active":"true"}
+### Remove an attribute [DELETE]
+
+Soft delete, sets the active bit to false.
++ Response 204
